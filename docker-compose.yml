@@ -1,0 +1,36 @@
+services:
+  server:
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run start -w @signal-lab/server"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATA_DIR: /data
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./:/app
+      - server-data:/data
+      - /app/node_modules
+    restart: unless-stopped
+
+  web:
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run build -w @signal-lab/web && npm run start -w @signal-lab/web"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/web/.next
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  server-data:

@@ -1,0 +1,39 @@
+# Bağımlılıklar
+node_modules/
+
+# Derleme çıktıları
+.next/
+out/
+dist/
+build/
+coverage/
+next-env.d.ts
+*.tsbuildinfo
+
+# Ortam değişkenleri / gizli bilgiler (örnek dosya hariç)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Çalışma zamanı verisi: sinyaller, kâğıt hesap, canlı karne, backtest önbellekleri
+apps/server/data/
+data/
+*.cache.json
+backtest-cache.json
+
+# Loglar
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# İşletim sistemi / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+.claude/

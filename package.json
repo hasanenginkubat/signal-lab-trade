@@ -1,0 +1,27 @@
+{
+  "name": "signal-lab",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Kripto sinyal ve manuel işlem terminali (Binance USDⓈ-M Futures)",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,web -c cyan,magenta \"npm run dev -w @signal-lab/server\" \"npm run dev -w @signal-lab/web\"",
+    "dev:server": "npm run dev -w @signal-lab/server",
+    "dev:web": "npm run dev -w @signal-lab/web",
+    "build": "npm run build -w @signal-lab/web",
+    "start": "concurrently -n server,web -c cyan,magenta \"npm run start -w @signal-lab/server\" \"npm run start -w @signal-lab/web\"",
+    "test": "npm test -w @signal-lab/server",
+    "typecheck": "npm run typecheck -w @signal-lab/server && npm run typecheck -w @signal-lab/web"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.18.2",
+    "concurrently": "^10.0.5",
+    "typescript": "^7.0.2"
+  },
+  "license": "MIT"
+}
